@@ -1,1 +1,1 @@
-# gpa-calculator
+# GPA Calculator app source code from the DEV Front-end workshop

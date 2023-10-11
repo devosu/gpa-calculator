@@ -1,34 +1,49 @@
+<!-- you can get this template by typing ! and pressing TAB in VS Code in a new .html file -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    /* this will apply to any element with the title class */
     .title {
       color: #357def;
     }
 
+    /* this will apply to any element with the card class */
     .card {
       border: 1px #357def solid;
       border-radius: 5px;
       padding: 20px;
       width: 50%;
+      /* this means that vertical margin is 0, horizontal is vertical */
+      /* auto margin makes it even on both sides so that card is centered */
       margin: 0 auto;
     }
 
+    /* this will apply to all buttons */
     button {
+      /* controls background color */
       background-color: #357def;
-      border: none;
-      padding: 5px;
+      /* controls text color */
       color: white;
+      border: none;
       border-radius: 5px;
+      /* padding - distance from elements inside, margin - outside */
+      padding: 5px;
     }
   </style>
-  <title>Document</title>
+  <!-- This defines the website name in the browser tabs -->
+  <title>GPA Calculator</title>
 </head>
 <body>
+  <!-- add title class to use the style from above -->
   <h1 class="title">GPA Calculator</h1>
+
+  <!-- large container for the entire form -->
   <div class="card">
+
+    <!-- two small containers for every row of text fields -->
     <div>
       <label>Current grade</label>
       <input id="oldGrade">
@@ -41,33 +56,44 @@
       <input id="newCredits">
     </div>
 
+    <!-- id's on every element must be different, we are using them to get an element reference in JS -->
     <button id="calculateButton">Calculate GPA</button>
 
+    <!-- this element is empty intentionally - we will use it to show output to user -->
     <p id="output"></p>
   </div>
+
   <script>
+    // get references to all input elements, note that id's must be exactly, case sensitive
     const oldGradeIn = document.getElementById("oldGrade");
     const oldCreditsIn = document.getElementById("oldCredits");
     const newGradeIn = document.getElementById("newGrade");
     const newCreditsIn = document.getElementById("newCredits");
 
+    // get references to the button and output paragraph
     const button = document.getElementById("calculateButton");
     const outputP = document.getElementById("output");
 
+    // static function with no parameters, will be called whenever the button is pressed
     function calculate() {
+      // when the button is pressed, get the latest values and parse strings to floats (decimals)
       const oldGrade = parseFloat(oldGradeIn.value);
       const oldCredits = parseFloat(oldCreditsIn.value);
       const newGrade = parseFloat(newGradeIn.value);
       const newCredits = parseFloat(newCreditsIn.value);
 
+      // use the GPA formula to calculate the new GPA
       const newGradeTotal = oldGrade * oldCredits + newGrade * newCredits;
       const newCreditsTotal = oldCredits + newCredits;
 
       const newGPA = newGradeTotal / newCreditsTotal;
 
+      // set the new GPA as text content of the output paragraph
       outputP.textContent = newGPA;
     }
 
+    // assign function calculate as a callback for the onclick event of the button
+    // note that there are no parenthesis after calculate! This is done to pass a reference to the function instead of calling (running) it
     button.onclick = calculate;
   </script>
 </body>
