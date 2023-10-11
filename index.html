@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .title {
+      color: #357def;
+    }
+
+    .card {
+      border: 1px #357def solid;
+      border-radius: 5px;
+      padding: 20px;
+      width: 50%;
+      margin: 0 auto;
+    }
+
+    button {
+      background-color: #357def;
+      border: none;
+      padding: 5px;
+      color: white;
+      border-radius: 5px;
+    }
+  </style>
+  <title>Document</title>
+</head>
+<body>
+  <h1 class="title">GPA Calculator</h1>
+  <div class="card">
+    <div>
+      <label>Current grade</label>
+      <input id="oldGrade">
+      <input id="oldCredits">
+    </div>
+
+    <div>
+      <label>New Course</label>
+      <input id="newGrade">
+      <input id="newCredits">
+    </div>
+
+    <button id="calculateButton">Calculate GPA</button>
+
+    <p id="output"></p>
+  </div>
+  <script>
+    const oldGradeIn = document.getElementById("oldGrade");
+    const oldCreditsIn = document.getElementById("oldCredits");
+    const newGradeIn = document.getElementById("newGrade");
+    const newCreditsIn = document.getElementById("newCredits");
+
+    const button = document.getElementById("calculateButton");
+    const outputP = document.getElementById("output");
+
+    function calculate() {
+      const oldGrade = parseFloat(oldGradeIn.value);
+      const oldCredits = parseFloat(oldCreditsIn.value);
+      const newGrade = parseFloat(newGradeIn.value);
+      const newCredits = parseFloat(newCreditsIn.value);
+
+      const newGradeTotal = oldGrade * oldCredits + newGrade * newCredits;
+      const newCreditsTotal = oldCredits + newCredits;
+
+      const newGPA = newGradeTotal / newCreditsTotal;
+
+      outputP.textContent = newGPA;
+    }
+
+    button.onclick = calculate;
+  </script>
+</body>
+</html>
